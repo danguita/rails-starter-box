@@ -39,7 +39,7 @@ Port 3000 in the host computer is forwarded to port 3000 in the virtual machine.
 
 * NodeJS as ExecJS runtime
 
-* Acceptance testing dependences (capybara-webkit)
+* Acceptance testing dependencies (capybara-webkit)
 
 * RVM (with ruby 1.9.3 and 1.8.7 installed)
 
