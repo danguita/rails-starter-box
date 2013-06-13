@@ -8,28 +8,46 @@ class apt_get_update {
     user => 'root'
   }
 }
+
 class { 'apt_get_update':
   stage => preinstall
 }
 
-package { [ 'build-essential', 
-'zlib1g-dev', 
-'libssl-dev', 
-'libreadline-dev', 
-'git-core', 
-'libxml2', 
-'libxml2-dev', 
-'libxslt1-dev',
-'sqlite3',
-'libsqlite3-dev']:
-ensure => installed,
+# System packages
+package { [ 'build-essential',
+            'zlib1g-dev',
+            'libssl-dev',
+            'libreadline-dev',
+            'git-core' ]:
+  ensure => installed,
 }
 
-# RMagick system dependencies
+# RMagick dependencies
 package { ['libmagickwand4', 'libmagickwand-dev']:
-ensure => installed,
+  ensure => installed,
 }
 
+# Capybara-webkit dependencies
+package { 'libqt4-dev':
+  ensure => installed,
+}
+
+# Nokogiri dependencies
+package { ['libxml2', 'libxml2-dev', 'libxslt1-dev']:
+  ensure => installed
+}
+
+# ExecJS runtime
+package { 'nodejs':
+  ensure => installed
+}
+
+# SQLite
+package { ['sqlite3', 'libsqlite3-dev']:
+  ensure => installed;
+}
+
+# MySQL
 class install_mysql {
   class { 'mysql': }
 
@@ -43,10 +61,17 @@ class install_mysql {
 }
 class { 'install_mysql': }
 
+# PostgreSQL
 class install_postgres {
   class { 'postgresql': }
 
   class { 'postgresql::server': }
+
+  pg_database { 'rails-starter':
+    ensure   => present,
+    encoding => 'UTF8',
+    require  => Class['postgresql::server']
+  }
 
   pg_user { 'vagrant':
     ensure    => present,
@@ -61,7 +86,7 @@ class install_postgres {
 class { 'install_postgres': }
 
 
-
+# RVM
 class install-rvm {
   include rvm
   rvm::system_user { vagrant: ; }
