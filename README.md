@@ -16,7 +16,7 @@ Inspired by the book ["Deploying Rails"](http://pragprog.com/book/cbdepra/deploy
 
 Building the virtual machine is this easy:
 
-    host $ git clone https://github.com/amaia/rails-starter-box.git
+    host $ git clone https://github.com/danguita/rails-starter-box.git
     host $ cd rails-starter-box
     host $ git submodule init
     host $ git submodule update
@@ -25,7 +25,7 @@ Building the virtual machine is this easy:
 If the base box is not present that command fetches it first. 
 
     host $ vagrant ssh
-    Welcome to Ubuntu 12.04 LTS (GNU/Linux 3.2.0-23-generic-pae i686)
+    Welcome to Ubuntu 12.04 LTS (GNU/Linux 3.2.0-23-generic x86_64)
     ...
     vagrant@rails-starter-box:~$
 
@@ -36,6 +36,10 @@ Port 3000 in the host computer is forwarded to port 3000 in the virtual machine.
 * Git
 
 * SQLite3, MySQL, and Postgres
+
+* NodeJS as ExecJS runtime
+
+* Acceptance testing dependences (capybara-webkit)
 
 * RVM (with ruby 1.9.3 and 1.8.7 installed)
 
