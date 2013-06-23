@@ -100,6 +100,9 @@ class install-rvm {
   rvm_system_ruby {
     'ruby-1.9.3-p429':
       ensure => 'present',
+      default_use => true;
+    'ruby-1.9.2-p320':
+      ensure => 'present',
       default_use => false;
     'ruby-1.8.7-p371':
       ensure => 'present',
@@ -107,14 +110,16 @@ class install-rvm {
   }
 
   rvm_gem {
-    'ruby-1.9.3-p429/bundler': ensure => latest;
-    'ruby-1.9.3-p429/rails': ensure => latest;
-    'ruby-1.9.3-p429/rake': ensure => latest;
-    'ruby-1.8.7-p371/bundler': ensure => latest;
-    'ruby-1.8.7-p371/rails': ensure => latest;
-    'ruby-1.8.7-p371/rake': ensure => latest;
+    'ruby-1.9.3-p429/bundler':
+        ensure => latest,
+        require => Rvm_system_ruby['ruby-1.9.3-p429'];
+    'ruby-1.9.2-p320/bundler':
+        ensure => latest,
+        require => Rvm_system_ruby['ruby-1.9.2-p320'];
+    'ruby-1.8.7-p371/bundler':
+        ensure => latest,
+        require => Rvm_system_ruby['ruby-1.8.7-p371'];
   }
-
 }
 
 class { 'install-rvm': }

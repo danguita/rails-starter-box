@@ -39,12 +39,13 @@ Port 3000 in the host computer is forwarded to port 3000 in the virtual machine.
 
 * NodeJS as ExecJS runtime
 
+* RVM (with ruby 1.9.3, 1.9.2 and 1.8.7 installed)
+
+* Bundler gems
+
 * Acceptance testing dependencies (capybara-webkit)
 
-* RVM (with ruby 1.9.3 and 1.8.7 installed)
-
-* Bundler, Rails and Rake gems for both rubies
-
+* Vim and Tmux
 
 ## Recommended Workflow
 
